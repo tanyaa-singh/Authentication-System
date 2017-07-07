@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Innerve</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+		<% if notice %>
+		<script type="text/javascript">
+			noty({text: '<%= notice %>', type: 'alert'});
+		</script>
+
+		<% end %>
+
+
+		<% if alert %>
+
+		<script type="text/javascript">
+			noty({text: '<%= alert %>', type: 'error'});
+		</script>
+		<% end %>
+       <% if user_signed_in? %>
+
+			<h1>Welcome <%= current_user.name %> !!</h1> 
+			<h3> Last signed at <%= current_user.last_sign_in_at.to_formatted_s(:short) %></h3>
+
+			<%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+
+		 <% end %>
+<%= yield %>
+
+</body>
+</html>
